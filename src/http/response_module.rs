@@ -1,4 +1,5 @@
-use std::fmt::{Display, write};
+use std::{fmt::Display, net::TcpStream};
+use std::io::{Write, Result as IoResult};
 use super::status_code_module;
 
 #[derive(Debug)]
@@ -15,16 +16,14 @@ impl Response {
             body: body 
         }
     }
-}
 
-impl Display for Response {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    pub fn send(&self, stream: &mut TcpStream) -> IoResult<()>{
         let body = match &self.body {
             Some(b) => b,
             None => "",
         };
         write!(
-            f,
+            stream,
             "HTTP/1.1 {} {}\r\n\r\n{}",
             self.status_code,
             self.status_code.reason_phrase(),

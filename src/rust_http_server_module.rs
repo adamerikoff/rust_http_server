@@ -31,7 +31,7 @@ impl RustHttpServer {
                                 Ok(request) => {
                                     dbg!(request);
                                     let response = response_module::Response::new(status_code_module::StatusCode::Ok, Some("IT WORKS".to_string()));
-                                    write!(stream, "{}", response);
+                                    response.send(&mut stream);
                                 }
                                 Err(e) => {
                                     println!("Failed to parse request: {}", e);
