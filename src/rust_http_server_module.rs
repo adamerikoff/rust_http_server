@@ -1,5 +1,7 @@
 use std::net::TcpListener;
-use std::io::Read;
+use std::io::{ Write, Read };
+use crate::http::status_code_module;
+use crate::http::response_module;
 use crate::http::request_module;
 
 pub struct RustHttpServer {
@@ -24,11 +26,12 @@ impl RustHttpServer {
                     let mut buffer = [0; 1024];
                     match stream.read(&mut buffer) {
                         Ok(_) => {
-
                             println!("Received request: {}", String::from_utf8_lossy(&buffer));                            
                             match request_module::Request::try_from(&buffer[..]) {
                                 Ok(request) => {
                                     dbg!(request);
+                                    let response = response_module::Response::new(status_code_module::StatusCode::Ok, Some("IT WORKS".to_string()));
+                                    write!(stream, "{}", response);
                                 }
                                 Err(e) => {
                                     println!("Failed to parse request: {}", e);
