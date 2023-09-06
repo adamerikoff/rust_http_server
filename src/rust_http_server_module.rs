@@ -1,5 +1,6 @@
 use std::net::TcpListener;
 use std::io::Read;
+use crate::http::request_module;
 
 pub struct RustHttpServer {
     address: String,
@@ -23,7 +24,10 @@ impl RustHttpServer {
                     let mut buffer = [0; 1024];
                     match stream.read(&mut buffer) {
                         Ok(_) => {
+
                             println!("Received request: {}", String::from_utf8_lossy(&buffer));
+                            request_module::Request::try_from(&buffer);
+                            
                         }
                         Err(e) => {
                             println!("Failed to read from connection: {}", e);
