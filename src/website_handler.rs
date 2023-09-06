@@ -7,7 +7,15 @@ use crate::http::{
 
 use super::rust_http_server_module::Handler;
 
-pub struct WebsiteHandler;
+pub struct WebsiteHandler {
+    public_path: String,
+}
+
+impl WebsiteHandler {
+    pub fn new(public_path: String) -> Self {
+        Self { public_path }
+    }
+}
 
 
 impl Handler for WebsiteHandler {
