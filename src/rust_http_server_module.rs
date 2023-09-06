@@ -1,3 +1,6 @@
+use std::net::TcpListener;
+
+
 pub struct RustHttpServer {
     address: String,
 }
@@ -10,6 +13,8 @@ impl RustHttpServer {
     }
 
     pub fn run(self) {
-        println!("Listening on {}", self.address)
+        println!("Listening on {}", self.address);
+
+        let listener = TcpListener::bind(&self.address);
     }
 }
