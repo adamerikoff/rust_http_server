@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 mod rust_http_server_module;
 mod http;
 

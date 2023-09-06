@@ -26,6 +26,14 @@ impl RustHttpServer {
                         Ok(_) => {
 
                             println!("Received request: {}", String::from_utf8_lossy(&buffer));                            
+                            match request_module::Request::try_from(&buffer[..]) {
+                                Ok(request) => {
+                                    dbg!(request);
+                                }
+                                Err(e) => {
+                                    println!("Failed to parse request: {}", e);
+                                }
+                            }
                         }
                         Err(e) => {
                             println!("Failed to read from connection: {}", e);
