@@ -1,6 +1,12 @@
 ## Single Threaded HTTP WebServer in Rust.
 
+
 ### How to launch
+
+* install
+  ```sh
+  cargo install cargo-expand
+  ```
 
 * build
   ```sh
