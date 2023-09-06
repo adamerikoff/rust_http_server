@@ -1,5 +1,5 @@
 fn main() {
-    let r_server = RustHttpServer::new("127.0.0.1:1995");
+    let r_server = RustHttpServer::new(String::from("127.0.0.1:1995"));
     r_server.run();
 }
 
@@ -15,7 +15,7 @@ impl RustHttpServer {
     }
 
     fn run(self) {
-        
+        println!("Listening on {}", self.address)
     }
 }
 
