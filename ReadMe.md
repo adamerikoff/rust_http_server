@@ -1,4 +1,5 @@
 ## Single Threaded HTTP WebServer in Rust.
+written for educational purposes
 
 
 ### How to launch
