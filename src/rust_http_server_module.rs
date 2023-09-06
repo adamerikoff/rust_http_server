@@ -25,9 +25,7 @@ impl RustHttpServer {
                     match stream.read(&mut buffer) {
                         Ok(_) => {
 
-                            println!("Received request: {}", String::from_utf8_lossy(&buffer));
-                            request_module::Request::try_from(&buffer);
-                            
+                            println!("Received request: {}", String::from_utf8_lossy(&buffer));                            
                         }
                         Err(e) => {
                             println!("Failed to read from connection: {}", e);
